@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Tabela de Pratos (Cardápio)
+model Prato {
+  id        String   @id @default(uuid())
+  nome      String
+  preco     Float
+  categoria String
+}
+
+// Tabela de Pedidos (Cozinha)
+model Pedido {
+  id        String   @id @default(uuid())
+  mesa      Int
+  descricao String
+  status    String   @default("PENDENTE")
+  createdAt DateTime @default(now())
+}
